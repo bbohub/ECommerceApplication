@@ -11,9 +11,9 @@ namespace ECommerceApplication.Controllers
             return "This the first user";
         }
         
-        public String TestPathUser()
+        public String DetailsUser()
         {
-            return "this is the test of the path of an user";
+            return "this is the details of an user";
         }
 
     }
