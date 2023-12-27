@@ -6,9 +6,9 @@ namespace ECommerceApplication.Controllers
     public class UserController : Controller
     {
         // GET: UserController
-        public String Index()
+        public IActionResult Index()
         {
-            return "This the first user";
+            return View();
         }
         
         public String DetailsUser()
