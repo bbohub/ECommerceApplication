@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace ECommerceApplication.Controllers
 {
@@ -11,9 +12,10 @@ namespace ECommerceApplication.Controllers
             return View();
         }
         
-        public String DetailsUser()
+        public IActionResult DetailsUser(String name)
         {
-            return "this is the details of an user";
+            ViewData["Message"] = "Hello " + name;
+            return View();
         }
 
     }
