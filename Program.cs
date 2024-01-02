@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ECommerceApplication.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ECommerceApplicationContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ECommerceApplicationContext") ?? throw new InvalidOperationException("Connection string 'ECommerceApplicationContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
