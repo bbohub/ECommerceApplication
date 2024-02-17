@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ECommerceApplication.Data;
+using ECommerceApplication.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ECommerceApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ECommerceApplicationContext") ?? throw new InvalidOperationException("Connection string 'ECommerceApplicationContext' not found.")));
@@ -9,6 +10,13 @@ builder.Services.AddDbContext<ECommerceApplicationContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
